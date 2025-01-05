@@ -1,0 +1,63 @@
+﻿@using Business.Models.Account;
+@model AccountRegisterVM;
+
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fruitkha Register</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/assets_login/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/assets_login/css/style.css">
+</head>
+<body>
+    <div class="main">
+
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form" asp-action="register" asp-controller="account">
+                        <h2 class="form-title">Create account</h2>
+                        <div class="text-danger" asp-validation-summary="All"></div>
+                        <div class="form-group">
+                            <input asp-for="Email" class="form-input" placeholder="Your Email" />
+                            <span asp-validation-for="Email"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Password" class="form-input" id="password" placeholder="Password" />
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="ConfirmPassword" class="form-input" id="re_password" placeholder="Repeat your password" />
+                            <span asp-validation-for="ConfirmPassword"></span>
+                        </div>             
+                       
+
+                        <div class="form-group">
+                            <button  type="submit" class="form-submit">Sign up</button>
+                        </div>
+                    </form>
+                    <p class="loginhere">
+                        Have already an account? <a asp-action="login" asp-controller="account" class="loginhere-link">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+   
+   
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿@using Business.Models.TeamMember;
+@model TeamMemberIndexVM
+<h2>Team Member List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>FullName</th>
+            <th>Position</th>
+            <th>CreatedDate</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var member in Model.TeamMembers)
+        {
+            <tr>
+                <td>@member.FullName</td>
+                <td>@member.Position</td>
+                <td>@member.CreatedDate</td>
+                <td>
+                    <a href="@Url.Action("Details", "Product", new { id = member.Id })" class="btn btn-info btn-sm">Details</a>
+                    <a href="@Url.Action("Update", "Product", new { id = member.Id })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", "Product", new { id = member.Id })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

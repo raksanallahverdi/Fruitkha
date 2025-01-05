@@ -1,0 +1,30 @@
+﻿@using Presentation.Areas.Admin.Models.User;
+@model UserUpdateVM
+
+<form enctype="multipart/form-data" method="post" asp-action="update" asp-controller="user">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" placeholder="Enter title" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" class="form-control" placeholder="Enter title" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NewPassword"></label>
+        <input asp-for="NewPassword" class="form-control" placeholder="Enter title" />
+        <span asp-validation-for="NewPassword" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ConfirmNewPassword"></label>
+        <input asp-for="ConfirmNewPassword" class="form-control" placeholder="Enter title" />
+        <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
+    </div>
+ 
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

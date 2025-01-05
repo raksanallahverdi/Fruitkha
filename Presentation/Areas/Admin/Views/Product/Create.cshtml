@@ -1,0 +1,71 @@
+﻿@using Business.Models.Product
+@model ProductCreateVM
+
+<h2>Create Product</h2>
+
+<div class="product-create-form">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input type="text" class="form-control" id="productName" name="Name" value="@Model.Name" required />
+        </div>
+
+        <div class="form-group">
+            <label for="productDescription">Description</label>
+            <textarea class="form-control" id="productDescription" name="Description" rows="4" required>@Model.Description</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="productStock">Stock Quantity</label>
+            <input type="number" class="form-control" id="productStock" name="StockQuantity" value="@Model.StockQuantity" required />
+        </div>
+
+        <div class="form-group">
+            <label for="productPrice">Price</label>
+            <input type="number" class="form-control" id="productPrice" name="Price" value="@Model.Price" step="1" required />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProductTypeId"></label>
+            <select class="form-select" asp-for="ProductTypeId" asp-items="@Model.ProductTypes"></select>
+            <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="productPhoto">Photo</label>
+            <input type="text" placeholder="Photo Url" class="form-control" id="productPhoto" name="PhotoName" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Create Product</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
+
+<style>
+    .product-create-form {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-create-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        border-radius: 4px;
+    }
+
+    .btn {
+        margin-top: 10px;
+    }
+</style>

@@ -1,0 +1,128 @@
+﻿@using Business.Models.Basket
+@model BasketIndexVM
+@{
+    int BasketId=0;
+    @foreach(var p in Model.BasketProducts)
+    {
+        BasketId = p.BasketId;
+    }
+
+    int subtotal = 0;
+    int shipping = 45;
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Check Out Product</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<!-- check out section -->
+<div class="checkout-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <!-- Products and Order Summary in the same table -->
+            <div class="col-lg-12">
+                <div class="checkout-product-list">
+                    <h3>Your Products</h3>
+
+
+                     @if (Model != null && Model.BasketProducts.Any())
+                            {
+                    <table class="order-details" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Subtotal</th>
+                             
+                            </tr>
+                        </thead>
+                        <tbody class="order-details-body">
+                           
+                                @foreach (var product in Model.BasketProducts)
+                                {
+                                    subtotal += product.TotalPrice;
+                                    <tr>
+                                        <td>@product.Product.Name</td>
+                                        <td>@product.Quantity</td>
+                                        <td>@product.Product.Price $</td>
+                                        <td>@product.TotalPrice $</td>
+                                    
+                                    </tr>
+                                }
+                           
+                        </tbody>
+                        <tfoot >
+                            <tr>
+                                <td style="padding:5px 15px;" colspan="3">Shipping: @shipping $ </td>
+                              
+                            </tr>
+                            <tr>
+                                <td style="padding:5px 15px;" colspan="3">Total: @(subtotal + shipping) $ </td>
+                               
+                            </tr>
+                        </tfoot>
+                            <div style="text-align: right;">
+
+
+                                <button type="button" style="border:none;color:black;background-color:transparent;" data-id="@BasketId" id="buyButton">Order</button>
+
+                            </div>
+                    </table>
+
+                       
+
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center">There is no product in the basket</td>
+                        </tr>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+
+        $(function () {
+            $('#buyButton').on('click', function (e) {
+                e.preventDefault();
+
+             
+                var basketId = $(this).data('id');
+              
+                $.ajax({
+                    url: "/CheckOut/DeleteBasketProducts",
+                    method: "POST",
+                    data: { basketId: basketId },
+                    success: function (response) {                   
+                        location.reload();
+                     
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error occurred: " + error);
+                    }
+                });
+            });
+        });
+
+
+    </script>
+}
+
+

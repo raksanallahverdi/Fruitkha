@@ -1,0 +1,45 @@
+﻿ @* @using Technify.Areas.Admin.Controllers;
+ @model MessageIndexVM;
+
+ <h2>Product List</h2>
+ <a style="margin:30px 0;" asp-action="create" asp-controller="product" class="btn btn-primary">Create New Product</a>
+
+
+
+ <form asp-controller="product" asp-action="index" method="get">
+     <label asp-for="Name"></label>
+     <input asp-for="Name" class="form-control" />
+ </form>
+
+ <table class="table">
+     <thead>
+         <tr>
+             <th>Product Name</th>
+             <th>Description</th>
+             <th>Stock</th>
+             <th>Price</th>
+             <th>Category</th>
+             <th>Actions</th>
+         </tr>
+     </thead>
+     <tbody>
+
+         @foreach (var product in Model.Products)
+         {
+             <tr>
+                 <td>@product.Name</td>
+                 <td>@(product.Description?.Length >= 15 ? product.Description.Substring(0, 15) + "..." : product.Description)</td>
+                 <td>@product.StockQuantity</td>
+                 <td>@product.Price $</td>
+                 <td>@product.ProductType.Name</td>
+                 <td>
+                     <a href="@Url.Action("Details", "Product", new { id = product.Id })" class="btn btn-info btn-sm">Details</a>
+                     <a href="@Url.Action("Update", "Product", new { id = product.Id })" class="btn btn-warning btn-sm">Edit</a>
+                     <a href="@Url.Action("Delete", "Product", new { id = product.Id })" class="btn btn-danger btn-sm">Delete</a>
+                 </td>
+             </tr>
+         }
+     </tbody>
+ </table> *@
+
+

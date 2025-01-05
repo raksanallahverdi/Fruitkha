@@ -1,0 +1,28 @@
+﻿@using Business.Models.Product;
+@model ProductIndexVM;
+
+@foreach (var product in Model.Products)
+{
+	
+	<div class="col-lg-4 col-md-6 text-center">
+		<div class="single-product-item">
+			<div class="product-image">
+				<a href="single-product.html"><img src="@product.PhotoName" alt=""></a>
+			</div>
+			<h3>@product.Name</h3>
+			<p class="product-price"><span>Per Kg</span> @product.Price $ </p>
+			<a data-id="@product.Id" class="addToBasket cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+			<div>
+
+				<hr />
+				<a data-id="@product.Id" class="readMore"><strong>Read More</strong></a>
+
+			</div>
+			
+		</div>
+	</div>
+
+}
+
+
+
